@@ -1,28 +1,35 @@
-body{
+/* style.css */
+
+body {
     background-color: #efefef;
-    font-family: monteserrat,sans-serif;
+    font-family: montserrat, sans-serif;
 }
-.container{
+
+.container {
     width: 1000px;
     margin: auto;
     transition: .5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
-    -ms-transition:0.5s;
+    -ms-transition: 0.5s;
 }
-.container h1{
+
+.container h1 {
     color: blueviolet;
 }
-.container header{
+
+.container header {
     display: grid;
     grid-template-columns: 1fr 50px;
     margin-top: 50px;
 }
-.container header .shopping{
+
+.container header .shopping {
     position: relative;
     text-align: right;
 }
-.shopping i{
+
+.shopping i {
     font-size: 3rem;
     color: blueviolet;
     cursor: pointer;
@@ -32,14 +39,16 @@ body{
     -ms-transition: all .25s ease;
     -o-transition: all .25s ease;
 }
-.shopping i:hover{
+
+.shopping i:hover {
     color: blueviolet;
 }
-.shopping span{
+
+.shopping span {
     background: red;
     border-radius: 50%;
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -50,13 +59,15 @@ body{
     left: 80%;
     padding: 3px 10px;
 }
-.container.list{
+
+.container .list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 50px;
 }
-.card{
+
+.card {
     position: fixed;
     top: 0;
     left: 100%;
@@ -69,18 +80,21 @@ body{
     -moz-transition: all .5s ease;
     -ms-transition: all .5s ease;
     -o-transition: all .5s ease;
-}    
-.active .card{
+}
+
+.active .card {
     left: calc(100% - 500px);
 }
-.active .container{
+
+.active .container {
     transform: translateX(-200px);
     -webkit-transform: translateX(-200px);
     -moz-transform: translateX(-200px);
     -ms-transform: translateX(-200px);
     -o-transform: translateX(-200px);
 }
-.card h1{
+
+.card h1 {
     color: #560bad;
     font-weight: 300;
     margin: 0;
@@ -89,14 +103,16 @@ body{
     display: flex;
     align-items: center;
 }
-.card .checkOut{
+
+.card .checkOut {
     position: absolute;
     bottom: 0;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2,1fr);
+    grid-template-columns: repeat(2, 1fr);
 }
-.card .checkOut div{
+
+.card .checkOut div {
     background-color: #560bad;
     color: #fff;
     width: 100%;
@@ -107,7 +123,99 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
-.card .checkOut div:nth-child(2){
+
+.card .checkOut div:nth-child(2) {
     background-color: #1c1f25;
     color: #fff;
+}
+
+.list .item {
+    text-align: center;
+    background-color: #efefef;
+    padding: 20px;
+    box-shadow: 0 50px 50px #757676;
+    letter-spacing: 1px;
+    transition: .25s ease;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.list .item:hover {
+    background-color: #560bad;
+}
+
+.list .item img {
+    width: 100px; /* Adjust image size */
+    height: auto;
+}
+
+.list .item .title {
+    font-weight: 600;
+}
+
+.list .item .price {
+    margin: 10px;
+}
+
+.list .item:hover .title,
+.list .item:hover .price {
+    color: #efefef;
+}
+
+.list .item button {
+    background: #efefef;
+    color: #560bad;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    padding: 10px;
+    border: 3px solid #560bad;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.list .item:hover {
+    background-color: #560bad;
+    color: #efefef;
+}
+
+.listCard li {
+    display: grid;
+    grid-template-columns: 100px repeat(3, 1fr);
+    color: #efefef;
+    row-gap: 10px;
+}
+
+.listCard li div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listCard li img {
+    width: 90%;
+}
+
+.listCard .count {
+    margin: 0px 10px;
+    color: #1c1f25;
+}
+
+.cardTitle,
+.cardPrice {
+    color: #1c1f25;
+}
+
+.cardButton {
+    width: 28px;
+    height: 28px;
+    color: #efefef;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
