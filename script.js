@@ -16,39 +16,57 @@ closeShopping.addEventListener("click", () => {
 let products = [
     {
         id: 1,
-        name: "PRODUCT 1",
-        images: "1.png",
+        name: "CAT TRUCK",
+        images: "CAT truc.png",
         price: 3000,
     },
     {
         id: 2,
-        name: "PRODUCT 2",
-        images: "2.png",
-        price: 3000,
+        name: "Dolls",
+        images: "dolls.webp",
+        price: 2000,
     },
     {
         id: 3,
-        name: "PRODUCT 3",
-        images: "3.png",
-        price: 3000,
+        name: "Race Car",
+        images: "race car.png",
+        price: 1000,
     },
     {
         id: 4,
-        name: "PRODUCT 4",
-        images: "4.png",
+        name: "Table Tennis Racket",
+        images: "TT racket.png",
         price: 3000,
     },
     {
         id: 5,
-        name: "PRODUCT 5",
-        images: "5.png",
-        price: 3000,
+        name: "Figurines",
+        images: "figurerines.png",
+        price: 500,
     },
     {
         id: 6,
-        name: "PRODUCT 6",
-        images: "6.png",
+        name: "Bricks",
+        images: "building brick.png",
         price: 3000,
+    },
+    {
+        id: 7,
+        name: "Monster truck",
+        images: "monster truck.png",
+        price: 3000,
+    },
+    {
+        id: 8,
+        name: "Cards",
+        images: "playing-cards.png",
+        price: 300,
+    },
+    {
+        id: 9,
+        name: "Puzzles",
+        images: "puzzel.webp",
+        price: 5000,
     },
 ];
 
@@ -62,7 +80,7 @@ const initApp = () => {
             <img src="img/${value.images}">
             <div class="title">${value.name}</div>
             <div class="price">${value.price.toLocaleString()}</div>
-            <button onclick="addToCard(${key})">Add To Card</button>
+            <button onclick="addToCard(${key})">Add To Cart</button>
         `;
         list.appendChild(newDiv);
     });
@@ -71,9 +89,10 @@ const initApp = () => {
 initApp();
 
 const addToCard = (key) => {
-    if (listCards[key] == null) {
-        listCards[key] = JSON.parse(JSON.stringify(products[key]));
-        listCards[key].quantity = 1;
+    if (!listCards[key]) {
+        listCards[key] = { ...products[key], quantity: 1 };
+    } else {
+        listCards[key].quantity += 1;
     }
     reloadCard();
 };
@@ -83,22 +102,20 @@ const reloadCard = () => {
     let count = 0;
     let totalPrice = 0;
 
-    listCards.forEach((value, key) => {
-        if (value != null) {
-            totalPrice += value.price * value.quantity;
-            count += value.quantity;
+    listCards.forEach((item, key) => {
+        if (item) {
+            totalPrice += item.price * item.quantity;
+            count += item.quantity;
 
             let newDiv = document.createElement("li");
             newDiv.innerHTML = `
-                <div><img src="img/${value.images}"></div>
-                <div class="cardTitle">${value.name}</div>
-                <div class="cardPrice">${value.price.toLocaleString()}</div>
+                <div><img src="img/${item.images}"></div>
+                <div class="cardTitle">${item.name}</div>
+                <div class="cardPrice">${(item.price * item.quantity).toLocaleString()}</div>
                 <div>
-                    <button style="background-color: #560bad"
-                    class="cardButton" onClick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
-                    <div class="count">${value.quantity}</div>
-                    <button style="background-color: #560bad"
-                    class="cardButton" onClick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                    <button style="background-color: #560bad" class="cardButton" onClick="changeQuantity(${key}, ${item.quantity - 1})">-</button>
+                    <div class="count">${item.quantity}</div>
+                    <button style="background-color: #560bad" class="cardButton" onClick="changeQuantity(${key}, ${item.quantity + 1})">+</button>
                 </div>
             `;
             listCard.appendChild(newDiv);
@@ -109,12 +126,22 @@ const reloadCard = () => {
     quantity.innerText = count;
 };
 
-const changeQuantity = (key, quantity) => {
-    if (quantity == 0) {
+const changeQuantity = (key, newQuantity) => {
+    if (newQuantity <= 0) {
         delete listCards[key];
     } else {
-        listCards[key].quantity = quantity;
-        listCards[key].price = quantity * products[key].price;
+        listCards[key].quantity = newQuantity;
     }
     reloadCard();
 };
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const image = document.querySelector('.slide-in-image');
+    // Remove visibility hidden to ensure the image can be animated
+    image.style.visibility = 'visible';
+    // Trigger a reflow to restart the animation
+    void image.offsetWidth;
+    // Add the animation class
+    image.style.animation = 'slideIn 1s ease-in-out forwards';
+});
