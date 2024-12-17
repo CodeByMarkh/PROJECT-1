@@ -1,4 +1,5 @@
 body {
+    background: linear-gradient(to bottom right, #e0f7fa, #ffffff);
     background-color: #efefef;
     font-family: montserrat, sans-serif;
 }
